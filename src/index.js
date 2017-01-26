@@ -43,5 +43,7 @@ app.start('#root');
 /*
 TODO
 1. 关闭了husky触发的lint代码检查（package.json中声明precommit）
-2. 
+2. 定义XRouteUrl类[format，push，replace，setRoute]
+3. dispatch action后，触发多个effect
+4. fetch封装
  */

@@ -4,6 +4,7 @@
 'use strict'
 import $$ from './utils/appHelper'
 
+// http://react-guide.github.io/react-router-cn/docs/API.html#route
 const routes = [
   {
     path: '/',
@@ -24,6 +25,10 @@ const routes = [
         cb(null, require('./routes/PageUsers/PageUsers'));
       });
     },
+    onEnter(){
+      // onEnter貌似无法在首次刷新后触发，所以，还是在Page组件的ComponentDidMount里做吧
+      console.log('【【【【【【【route onEnter')
+    }
   },
 ];
 

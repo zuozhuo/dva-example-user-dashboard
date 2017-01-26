@@ -4,7 +4,7 @@ import styles from './PageUsers.css';
 import UsersComponent from '../../components/Users/Users';
 import MainLayout from '../../components/MainLayout/MainLayout';
 import $$ from "../../utils/appHelper";
-
+import * as usersMeta  from "../../models/users.meta";
 
 class PageUsers extends React.Component {
 
@@ -13,13 +13,15 @@ class PageUsers extends React.Component {
   }
 
   componentDidMount() {
+    const {location, params} = $$.getRouteInfo();
 
+    usersMeta.dispatchAction(usersMeta.ACTION_TYPES.fetch, {test: params.uid});
   }
 
   render() {
 
     const {location, params} = $$.getRouteInfo();
-    console.log(location,params);
+    console.log(location, params);
 
 
     return (

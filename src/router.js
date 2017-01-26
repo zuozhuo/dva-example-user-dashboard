@@ -1,9 +1,8 @@
 "use strict";
 
 import React from 'react';
-import {Router, applyRouterMiddleware,} from 'dva/router';
-import routes from './routesMap'
-// import {registerModel} from "./utils";
+import {Router, Route, applyRouterMiddleware,} from 'dva/router';
+import routes from './routesList'
 
 
 const useExtraProps = {

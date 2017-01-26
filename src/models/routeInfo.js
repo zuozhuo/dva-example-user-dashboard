@@ -30,7 +30,7 @@ export default {
 
       return history.listen(location => {
 
-        matchRoutes(require('../routesMap'), location, (error, state) => {
+        matchRoutes(require('../routesList'), location, (error, state) => {
           if (!error) {
             dispatch({
               type: ACTION_TYPES.setRoute,
