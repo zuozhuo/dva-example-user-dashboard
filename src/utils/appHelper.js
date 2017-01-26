@@ -118,6 +118,11 @@ function createModelActionMethods(namespace) {
   }
 }
 
+// 封装的setTimeout，用于在effects中使用
+//       yield call($$.delay, 5000); //延迟5秒
+const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+
+
 export default {
   registerModel,
   registerApp, getApp,
@@ -125,4 +130,5 @@ export default {
   getHistory, dispatch,
   pushToUrl, replaceToUrl,
   createActionTypes, createAction, createActionWithNamespace, createModelActionMethods,
+  delay
 }

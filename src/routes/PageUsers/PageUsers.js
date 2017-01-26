@@ -21,7 +21,7 @@ class PageUsers extends React.Component {
   render() {
 
     const {location, params} = $$.getRouteInfo();
-    console.log(location, params);
+
 
 
     return (

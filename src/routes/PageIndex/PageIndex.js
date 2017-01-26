@@ -6,7 +6,6 @@ import $$ from "../../utils/appHelper";
 
 function PageIndex() {
   const {location, params} = $$.getRouteInfo();
-  console.log(location, params);
 
 
   return (
