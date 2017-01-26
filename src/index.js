@@ -20,6 +20,7 @@ const app = dva({
   extraReducers: {},
   onError(e) {
     message.error(e.message, ERROR_MSG_DURATION);
+    throw e;
   },
 });
 $$.registerApp(app);
@@ -41,9 +42,9 @@ app.router(require('./router'));
 app.start('#root');
 
 /*
-TODO
-1. 关闭了husky触发的lint代码检查（package.json中声明precommit）
-2. 定义XRouteUrl类[format，push，replace，setRoute]
-3. dispatch action后，触发多个effect
-4. fetch封装
+ TODO
+ 1. 关闭了husky触发的lint代码检查（package.json中声明precommit）
+ 2. 定义XRouteUrl类[format，push，replace，setRoute]
+ 3. dispatch action后，触发多个effect
+ 4. fetch的封装
  */

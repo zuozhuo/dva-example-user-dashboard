@@ -67,7 +67,9 @@ function createAction(type, payload) {
 function putAction(put, type, payload) {
   // 貌似不能用全局的put，只能讲model上effects的put传进来
   // import {call, put} from 'redux-saga/effects'
-
+  if (typeof put !== 'function') {
+    throw new Error('请将effects中的put作为第一个参数传入！')
+  }
   const actionJson = createAction(type, payload);
   return put(actionJson);
 }

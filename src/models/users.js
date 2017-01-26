@@ -29,19 +29,19 @@ export default {
     },
     *remove({payload: id}, {call, put}) {
       yield call(usersService.remove, id);
-      yield put({type: 'reload'});
+      yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.reload);
     },
     *patch({payload: {id, values}}, {call, put}) {
       yield call(usersService.patch, id, values);
-      yield put({type: 'reload'});
+      yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.reload);
     },
     *create({payload: values}, {call, put}) {
       yield call(usersService.create, values);
-      yield put({type: 'reload'});
+      yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.reload);
     },
     *reload(action, {put, select}) {
       const page = yield select(state => state.users.page);
-      yield put({type: 'fetch', payload: {page}});
+      yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.fetch, {page});
     },
   },
   subscriptions: {
