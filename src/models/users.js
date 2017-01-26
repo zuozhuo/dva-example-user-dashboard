@@ -11,16 +11,16 @@ export default {
     page: null,
   },
   reducers: {
-    save(state, {payload: {data: list, total, page}}) {
+    [usersMeta.ACTION_TYPES.save](state, {payload: {data: list, total, page}}) {
       return {...state, list, total, page};
     },
-    fetch(state, action){
+    [usersMeta.ACTION_TYPES.fetch](state, action){
       console.log(action);
       return state;
     }
   },
   effects: {
-    *fetch({payload: {page = 1, test}}, {call, put}) {
+    *[usersMeta.ACTION_TYPES.fetch]({payload: {page = 1, test}}, {call, put}) {
       const {data, headers} = yield call(usersService.fetch, {page, test});
       yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.save, {
         data,
@@ -28,19 +28,19 @@ export default {
         page: parseInt(page, 10),
       });
     },
-    *remove({payload: id}, {call, put}) {
+    *[usersMeta.ACTION_TYPES.remove]({payload: id}, {call, put}) {
       yield call(usersService.remove, id);
       yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.reload);
     },
-    *patch({payload: {id, values}}, {call, put}) {
+    *[usersMeta.ACTION_TYPES.patch]({payload: {id, values}}, {call, put}) {
       yield call(usersService.patch, id, values);
       yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.reload);
     },
-    *create({payload: values}, {call, put}) {
+    *[usersMeta.ACTION_TYPES.create]({payload: values}, {call, put}) {
       yield call(usersService.create, values);
       yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.reload);
     },
-    *reload(action, {put, select}) {
+    *[usersMeta.ACTION_TYPES.reload](action, {put, select}) {
       const page = yield select(state => state.users.page);
       yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.fetch, {page});
     },

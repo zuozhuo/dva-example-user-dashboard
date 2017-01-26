@@ -45,7 +45,8 @@ app.start('#root');
  TODO
  1. 关闭了husky触发的lint代码检查（package.json中声明precommit）
  2. 定义XRouteUrl类[format，push，replace，setRoute]
- 3. dispatch action后，触发多个effect
+ 3. dispatch action后，触发多个effect，异步的 chain 调用
  4. fetch的封装
  5. 翻页与url的同步问题
+ 6. routes改成<Route />方式定义
  */
