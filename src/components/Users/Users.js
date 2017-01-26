@@ -16,7 +16,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   function pageChangeHandler(page) {
     dispatch(routerRedux.push({
-      pathname: '/users',
+      pathname: '/users/2',
       query: { page },
     }));
   }

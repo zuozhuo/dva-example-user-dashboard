@@ -5,7 +5,7 @@
     "build": "roadhog build",
     "test": "roadhog test",
     "lint": "eslint --ext .js src test",
-    "precommit": "npm run lint"
+    "precommit-0000": "npm run lint"
   },
   "dependencies": {
     "antd": "^2.6.4",

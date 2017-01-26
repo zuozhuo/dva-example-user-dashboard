@@ -42,6 +42,7 @@ export default {
     },
   },
   subscriptions: {
+    // 不再这里加载数据，不好判断
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/users') {
