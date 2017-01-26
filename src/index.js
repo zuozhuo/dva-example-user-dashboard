@@ -40,3 +40,8 @@ app.router(require('./router'));
 // 5. Start
 app.start('#root');
 
+/*
+TODO
+1. 关闭了husky触发的lint代码检查（package.json中声明precommit）
+2. 
+ */
