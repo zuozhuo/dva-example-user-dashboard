@@ -2,7 +2,7 @@ import matchRoutes from 'react-router/lib/matchRoutes'
 
 const NAMESPACE = 'routeInfo';
 const ACTION_TYPES = {
-  "setRoute": "setRoute"
+  "setRouteInfo": "setRouteInfo"
 };
 
 
@@ -17,7 +17,7 @@ export default {
     params: {},
   },
   reducers: {
-    [ACTION_TYPES.setRoute](state, {type, payload:{location, params}}) {
+    [ACTION_TYPES.setRouteInfo](state, {type, payload:{location, params}}) {
       return {
         ...state,
         location,
@@ -30,10 +30,10 @@ export default {
 
       return history.listen(location => {
 
-        matchRoutes(require('../routesList'), location, (error, state) => {
+        matchRoutes(require('../routesSet'), location, (error, state) => {
           if (!error) {
             dispatch({
-              type: ACTION_TYPES.setRoute,
+              type: ACTION_TYPES.setRouteInfo,
               payload: {
                 location: location,
                 params: state ? state.params : {}

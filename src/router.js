@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Router, Route, applyRouterMiddleware,} from 'dva/router';
-import routes from './routesList'
+import routes from './routesSet'
 
 
 

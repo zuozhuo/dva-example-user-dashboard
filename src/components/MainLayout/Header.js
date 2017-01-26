@@ -2,6 +2,8 @@ import React from 'react';
 import { Menu, Icon, } from 'antd';
 import { Link } from 'dva/router';
 import $$ from "../../utils/appHelper";
+import * as allUrls from "../../urls";
+
 
 function Header({ location }) {
   return (
@@ -10,14 +12,16 @@ function Header({ location }) {
       mode="horizontal"
       theme="dark"
     >
-      <Menu.Item key="/users/1">
-        <Link to="/users/1?hello=222&world=3333"><Icon type="bars" />Users</Link>
+      <Menu.Item key={allUrls.urlPageUsers.formatUrl({uid:2000})}>
+        <Link to={allUrls.urlPageUsers.formatUrl({uid:2000},{hello:222,world:333})} ><Icon type="bars" />Users</Link>
       </Menu.Item>
-      <Menu.Item key="/users/3">
-        <div onClick={()=>$$.pushToUrl('/users/3')}><Icon type="bars" />Users2</div>
+      <Menu.Item key={allUrls.urlPageUsers.formatUrl({uid:1999})}>
+        <div onClick={()=>allUrls.urlPageUsers.pushMe({uid:1999},{'very':'good'})}>
+          <Icon type="bars" />Users2
+        </div>
       </Menu.Item>
       <Menu.Item key="/">
-        <Link to="/"><Icon type="home" />Home</Link>
+        <Link to={allUrls.urlPageIndex.formatUrl()}><Icon type="home" />Home</Link>
       </Menu.Item>
       <Menu.Item key="/404">
         <Link to="/page-you-dont-know"><Icon type="frown-circle" />404</Link>

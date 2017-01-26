@@ -40,4 +40,4 @@ class PageUsers extends React.Component {
 // export default PageUsers;
 
 // 连接redux
-export default connect(({users, users2, routing, routing0})=>({users, users2, routing, routing0}))(PageUsers);
+export default connect(({users})=>({users}))(PageUsers);
