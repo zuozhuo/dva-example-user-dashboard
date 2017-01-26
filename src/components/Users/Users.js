@@ -5,6 +5,7 @@ import { routerRedux } from 'dva/router';
 import styles from './Users.css';
 import { PAGE_SIZE } from '../../constants';
 import UserModal from './UserModal';
+import * as usersMeta from '../../models/users.meta'
 
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
@@ -15,10 +16,11 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   function pageChangeHandler(page) {
-    dispatch(routerRedux.push({
-      pathname: '/users/2',
-      query: { page },
-    }));
+    usersMeta.dispatchAction(usersMeta.ACTION_TYPES.fetch, {page});
+    // dispatch(routerRedux.push({
+    //   pathname: '/users/2',
+    //   query: { page },
+    // }));
   }
 
   function editHandler(id, values) {

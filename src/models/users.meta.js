@@ -4,18 +4,21 @@
 'use strict'
 import $$ from '../utils/appHelper'
 
+// 申明model的命名空间
 export const NAMESPACE = "users";
 
-export const ACTION_TYPES = {
-  save: 'save',
-  fetch: 'fetch',
-  remove: 'remove',
-  patch: 'patch',
-  create: 'create',
-  reload: 'reload',
-};
+// 声明model的所有ACTION类型
+export const ACTION_TYPES = $$.createActionTypes({
+  save: '',
+  fetch: '',
+  remove: '',
+  patch: '',
+  create: '',
+  reload: '',
+});
 
 
+// 创建model的操作action快捷方法
 export const {
   createAction,
   dispatchAction,

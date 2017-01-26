@@ -47,4 +47,5 @@ app.start('#root');
  2. 定义XRouteUrl类[format，push，replace，setRoute]
  3. dispatch action后，触发多个effect
  4. fetch的封装
+ 5. 翻页与url的同步问题
  */

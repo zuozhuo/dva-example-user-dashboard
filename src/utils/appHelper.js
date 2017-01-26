@@ -2,11 +2,13 @@
  * Created by zuozhuo on 2017/1/25.
  */
 'use strict'
+import {routerRedux} from 'dva/router'
 
 // ----------------------------------------------------
 let _dvaApp = null;
 function registerApp(dvaApp) {
   window._dvaApp = _dvaApp = dvaApp;
+  _dvaApp.routerRedux = routerRedux;
 }
 // 获取dvaApp对象
 function getApp() {
@@ -44,6 +46,13 @@ function getRouteInfo() {
   // {location: Object, params: Object}
   return getState().routeInfo;
 }
+function getRouteParams() {
+  return getRouteInfo().params;
+}
+function getLocation() {
+  return getRouteInfo().location;
+}
+
 // 获取history对象(enhancedHistory)，用于push、replace url
 function getHistory() {
   // 该history为 react-router-redux 组件 syncHistoryWithStore 封装dva({history})后的 enhancedHistory
@@ -51,6 +60,12 @@ function getHistory() {
   return getApp()._history;
 }
 function pushToUrl(url) {
+  /* routerRedux方式的push
+   dispatch(routerRedux.push({
+   pathname: '/users/2',
+   query: { page },
+   }));
+   */
   getHistory().push(url); // 跳转页面
 }
 function replaceToUrl(url) {
@@ -58,6 +73,15 @@ function replaceToUrl(url) {
 }
 
 // ----------------------------------------------------
+function createActionTypes(ACTION_TYPES) {
+  // 修正键值对为相同字符串
+  for (let prop in ACTION_TYPES) {
+    if (ACTION_TYPES.hasOwnProperty(prop)) {
+      ACTION_TYPES[prop] = prop;
+    }
+  }
+  return ACTION_TYPES;
+}
 function createAction(type, payload) {
   return {
     type,
@@ -97,8 +121,8 @@ function createModelActionMethods(namespace) {
 export default {
   registerModel,
   registerApp, getApp,
-  getState, getStore, getRouteInfo,
+  getState, getStore, getRouteInfo, getLocation, getRouteParams,
   getHistory, dispatch,
   pushToUrl, replaceToUrl,
-  createAction, createActionWithNamespace, createModelActionMethods,
+  createActionTypes, createAction, createActionWithNamespace, createModelActionMethods,
 }
