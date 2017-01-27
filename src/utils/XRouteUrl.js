@@ -73,26 +73,26 @@ class XRouteUrl {
   }
 
   // 用于将路由pattern转成原始string
-  formatUrl(pathParams = {}, queryParams) {
+  formatUrl(routeParams = {}, queryParams) {
 
     // 如果是绝对路径的url，例如第三方的url，那么原样返回
     if (isUrlAbsolute(this.getPathPattern())) {
       return this.getPathPattern();
     }
     // 用于将 /user/:uid 转化为 /user/1999
-    let url = formatPattern(this.getPathPattern(), pathParams);
+    let url = formatPattern(this.getPathPattern(), routeParams);
     if (queryParams && typeof queryParams === 'object') {
       url += `?${querystring.stringify(queryParams)}`
     }
     return url;
   }
 
-  pushMe(pathParams = {}, queryParams) {
+  pushMe(routeParams = {}, queryParams) {
     let url = this.formatUrl.apply(this, arguments);
     $$.pushToUrl(url);
   }
 
-  replaceMe(pathParams = {}, queryParams) {
+  replaceMe(routeParams = {}, queryParams) {
     let url = this.formatUrl.apply(this, arguments);
     $$.replaceToUrl(url);
   }

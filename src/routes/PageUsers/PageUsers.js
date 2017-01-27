@@ -15,7 +15,7 @@ class PageUsers extends React.Component {
   componentDidMount() {
     const {location, params} = $$.getRouteInfo();
 
-    usersMeta.dispatchAction(usersMeta.ACTION_TYPES.fetch, {test: params.uid});
+    usersMeta.dispatchAction(usersMeta.ACTION_TYPES.fetch, {test: params.uid, page: location.query.page || 1});
   }
 
   render() {

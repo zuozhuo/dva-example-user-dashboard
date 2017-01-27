@@ -6,6 +6,8 @@ import styles from './Users.css';
 import { PAGE_SIZE } from '../../constants';
 import UserModal from './UserModal';
 import * as usersMeta from '../../models/users.meta'
+import $$ from "../../utils/appHelper";
+import * as allUrls from "../../urls";
 
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
@@ -17,6 +19,8 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   function pageChangeHandler(page) {
     usersMeta.dispatchAction(usersMeta.ACTION_TYPES.fetch, {page});
+    $$.pushToUrl(allUrls.urlPageUsers.formatUrl($$.getRouteParams(), {page}));
+
     // dispatch(routerRedux.push({
     //   pathname: '/users/2',
     //   query: { page },
