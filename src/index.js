@@ -3,6 +3,8 @@ import {browserHistory, hashHistory} from 'dva/router'
 import React from 'react'
 import createLoading from 'dva-loading';
 import {message} from 'antd';
+import createReduxLogger from 'redux-logger'
+
 
 import './index.html';
 import './index.css';
@@ -16,7 +18,9 @@ const app = dva({
   // 使用 browserHistory 或 hashHistory（默认）
   history: browserHistory,
   // 用于添加额外的redux applyMiddleware
-  onAction: [],
+  onAction: [
+    createReduxLogger(),
+  ],
   // 添加额外的reducer
   extraReducers: {},
   onError(e) {
@@ -50,7 +54,8 @@ window.React = React;
  - [x] 定义XRouteUrl类[format，push，replace，setRoute]
  - [x] effects中的多个异步请求的处理，put无法按步骤执行，只能用call，将所有异步请求放在一个新建action effect函数里
  - [x] fetch的封装
- - [ ] 翻页与url的同步问题(同步url的dispatch action)
+ - [x] 翻页与url的同步问题(同步url的dispatch action)
+ - [x] 添加了redux-logger
  - [x] select的用法：异步读取顶层state数据
  - [x] Promise封装（将普通函数在effects中使用）
  - [ ] 改造联房科技代码
