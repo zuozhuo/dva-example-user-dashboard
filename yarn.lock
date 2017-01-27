@@ -1032,6 +1032,10 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bottlejs@^1.5.0:
+  version "1.5.0"
+  resolved "http://registry.npm.taobao.org/bottlejs/download/bottlejs-1.5.0.tgz#41b47762d40d4bb2f0aaecfd907f10423a0a0db7"
+
 brace-expansion@^1.0.0:
   version "1.1.6"
   resolved "http://registry.npm.taobao.org/brace-expansion/download/brace-expansion-1.1.6.tgz#7197d7eaa9b87e648390ea61fc66c84427420df9"

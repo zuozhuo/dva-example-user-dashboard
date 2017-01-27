@@ -4,11 +4,14 @@ import React from 'react'
 import createLoading from 'dva-loading';
 import {message} from 'antd';
 import createReduxLogger from 'redux-logger'
-
-
 import './index.html';
 import './index.css';
 import $$ from "./utils/appHelper";
+import bottle from './utils/bottle'
+
+// 给全局bottle注册相关依赖
+// 给依赖注入容器添加appHelper服务
+bottle.service('appHelper', ()=>$$);
 
 
 const ERROR_MSG_DURATION = 3; // 3 秒

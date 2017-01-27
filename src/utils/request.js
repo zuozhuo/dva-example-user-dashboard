@@ -21,6 +21,7 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export async function request(url, options) {
+  // TODO 这里可以做一些全局处理，追加url请求参数，追加header等
   const response = await fetch(url, options);
 
   checkStatus(response);

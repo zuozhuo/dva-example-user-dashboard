@@ -7,11 +7,16 @@
  * Created by zuozhuo on 16/10/18.
  */
 "use strict";
-// 注意！！！！ 为了避免循环引用，这里的import必须纯净，其import的外部包的import也必须纯净，例如appHelper
+// 注意！！！！ 为了避免循环引用，这里的import必须纯净，
+// 这里的import仅限node_modules中的第三方包
+// 不要有任何项目中的组件import，如有项目代码依赖，请使用bottle来获取依赖注入，例如后面的appHelper
 import React from 'react'
 import querystring from 'querystring'
 import {formatPattern} from 'react-router'
-import $$ from './appHelper'
+
+// 这里的appHelper通过bottle来获取，不要直接import原始代码，否则容易造成循环依赖
+// import appHelper from './appHelper'
+import bottle from './bottle'
 
 
 function isUrlAbsolute(url) {
@@ -28,6 +33,8 @@ class XRouteUrl {
   constructor(pathPattern) {
     this.pathPattern = pathPattern;
   }
+  // 通过bottle来获取依赖的appHelper
+  appHelper = bottle.container.appHelper;
 
   getPathPattern() {
     return this.pathPattern;
@@ -89,12 +96,12 @@ class XRouteUrl {
 
   pushMe(routeParams = {}, queryParams) {
     let url = this.formatUrl.apply(this, arguments);
-    $$.pushToUrl(url);
+    this.appHelper.pushToUrl(url);
   }
 
   replaceMe(routeParams = {}, queryParams) {
     let url = this.formatUrl.apply(this, arguments);
-    $$.replaceToUrl(url);
+    this.appHelper.replaceToUrl(url);
   }
 }
 
