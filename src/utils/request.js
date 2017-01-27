@@ -42,7 +42,7 @@ export async function request(url, options) {
 export async function GET(url, query = {}, options) {
   const urlWithQuery = $$.addUrlQuery(url, query);
 
-  return request(urlWithQuery, {
+  return await request(urlWithQuery, {
     method: 'GET',
     ...options,
   });
@@ -50,7 +50,7 @@ export async function GET(url, query = {}, options) {
 
 export async function POST(url, data = {}, options) {
 
-  return request(url, {
+  return await  request(url, {
     method: 'POST',
     body: createBodyString(data),
     ...options,
@@ -60,7 +60,7 @@ export async function POST(url, data = {}, options) {
 export async function DELETE(url, query = {}, options) {
   const urlWithQuery = $$.addUrlQuery(url, query);
 
-  return request(urlWithQuery, {
+  return await  request(urlWithQuery, {
     method: 'DELETE',
     ...options,
   });
@@ -68,7 +68,7 @@ export async function DELETE(url, query = {}, options) {
 
 export async function PATCH(url, data = {}, options) {
 
-  return request(url, {
+  return await request(url, {
     method: 'PATCH',
     body: createBodyString(data),
     ...options,

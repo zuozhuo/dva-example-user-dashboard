@@ -133,6 +133,7 @@ function addUrlQuery(url, query) {
     query = querystring.parse(query);
   }
   urlObject.query = {...urlObject.query, ...query};
+  urlObject.search = null; // 必须将search设置为空，format才会处理query
   return urlUtil.format(urlObject);
 }
 
@@ -143,5 +144,5 @@ export default {
   getHistory, dispatch,
   pushToUrl, replaceToUrl,
   createActionTypes, createAction, createActionWithNamespace, createModelActionMethods,
-  delay,addUrlQuery,
+  delay, addUrlQuery,
 }

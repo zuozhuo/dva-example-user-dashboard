@@ -10,7 +10,7 @@
 // 注意！！！！ 为了避免循环引用，这里的import必须纯净，其import的外部包的import也必须纯净，例如appHelper
 import React from 'react'
 import querystring from 'querystring'
-import {Route, formatPattern, browserHistory} from 'react-router'
+import {formatPattern} from 'react-router'
 import $$ from './appHelper'
 
 
@@ -64,7 +64,11 @@ class XRouteUrl {
     } else {
       routeProps.component = component;
     }
-    this.route = <Route {...routeProps}/>;
+
+    // 这里不能以 <Route /> 组件形式返回，因为matchRoutes方法不识别
+    // this.route = <Route {...routeProps}/>;
+    // 必须以纯JSON返回
+    this.route = routeProps;
     return this.route;
   }
 
@@ -75,6 +79,7 @@ class XRouteUrl {
     if (isUrlAbsolute(this.getPathPattern())) {
       return this.getPathPattern();
     }
+    // 用于将 /user/:uid 转化为 /user/1999
     let url = formatPattern(this.getPathPattern(), pathParams);
     if (queryParams && typeof queryParams === 'object') {
       url += `?${querystring.stringify(queryParams)}`

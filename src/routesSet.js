@@ -17,7 +17,6 @@ allUrls.urlPageIndex.setRoute(null, (nextState, cb)=>{
 // allUrls.urlPageIndex.setRoute(require('./routes/PageIndex/PageIndex'));
 
 allUrls.urlPageUsers.setRoute(null, (nextState, cb)=> {
-  // TODO nextState 到底是nextState还是location
   require.ensure([], (require) => {
     // 按需加载page所需的model
     $$.registerModel(require('./models/users'));

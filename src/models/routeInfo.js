@@ -27,10 +27,10 @@ export default {
   },
   subscriptions: {
     setup({dispatch, history}) {
-
+      const routes = require('../routesSet');
       return history.listen(location => {
 
-        matchRoutes(require('../routesSet'), location, (error, state) => {
+        matchRoutes(routes, location, (error, state) => {
           if (!error) {
             dispatch({
               type: ACTION_TYPES.setRouteInfo,

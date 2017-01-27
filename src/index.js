@@ -49,10 +49,10 @@ window.React = React;
  - [x] 关闭了husky触发的lint代码检查（package.json中声明precommit）
  - [x] 定义XRouteUrl类[format，push，replace，setRoute]
  - [x] effects中的多个异步请求的处理，put无法按步骤执行，只能用call，将所有异步请求放在一个新建action effect函数里
- - [ ] fetch的封装
+ - [x] fetch的封装
  - [ ] 翻页与url的同步问题(同步url的dispatch action)
  - [x] select的用法：异步读取顶层state数据
- - [ ] Promise封装（将普通函数在effects中使用）
+ - [x] Promise封装（将普通函数在effects中使用）
  - [ ] 改造联房科技代码
  - [ ] js的依赖注入实现（将XRouteUrl的依赖降到最低）
  - [ ] ticket注入全局ajax
