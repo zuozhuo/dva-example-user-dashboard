@@ -9,7 +9,7 @@
 "use strict";
 // 注意！！！！ 为了避免循环引用，这里的import必须纯净，其import的外部包的import也必须纯净，例如appHelper
 import React from 'react'
-import qs from 'qs'
+import querystring from 'querystring'
 import {Route, formatPattern, browserHistory} from 'react-router'
 import $$ from './appHelper'
 
@@ -77,7 +77,7 @@ class XRouteUrl {
     }
     let url = formatPattern(this.getPathPattern(), pathParams);
     if (queryParams && typeof queryParams === 'object') {
-      url += `?${qs.stringify(queryParams)}`
+      url += `?${querystring.stringify(queryParams)}`
     }
     return url;
   }

@@ -54,4 +54,6 @@ window.React = React;
  - [x] select的用法：异步读取顶层state数据
  - [ ] Promise封装（将普通函数在effects中使用）
  - [ ] 改造联房科技代码
+ - [ ] js的依赖注入实现（将XRouteUrl的依赖降到最低）
+ - [ ] ticket注入全局ajax
  */

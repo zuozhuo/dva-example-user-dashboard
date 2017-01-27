@@ -1,4 +1,7 @@
+"use strict";
 import fetch from 'dva/fetch';
+import querystring from 'querystring';
+import $$ from "./appHelper";
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -17,7 +20,7 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default async function request(url, options) {
+export async function request(url, options) {
   const response = await fetch(url, options);
 
   checkStatus(response);
@@ -34,4 +37,50 @@ export default async function request(url, options) {
   }
 
   return ret;
+}
+
+export async function GET(url, query = {}, options) {
+  const urlWithQuery = $$.addUrlQuery(url, query);
+
+  return request(urlWithQuery, {
+    method: 'GET',
+    ...options,
+  });
+}
+
+export async function POST(url, data = {}, options) {
+
+  return request(url, {
+    method: 'POST',
+    body: createBodyString(data),
+    ...options,
+  })
+}
+
+export async function DELETE(url, query = {}, options) {
+  const urlWithQuery = $$.addUrlQuery(url, query);
+
+  return request(urlWithQuery, {
+    method: 'DELETE',
+    ...options,
+  });
+}
+
+export async function PATCH(url, data = {}, options) {
+
+  return request(url, {
+    method: 'PATCH',
+    body: createBodyString(data),
+    ...options,
+  })
+}
+
+
+function createBodyString(data) {
+  // 以JSON形式提交
+  const bodyString = typeof data === 'string' ? data : JSON.stringify(data);
+  // 以formData（querystring）形式提交
+  // const bodyString = querystring.stringify(data);
+
+  return bodyString;
 }

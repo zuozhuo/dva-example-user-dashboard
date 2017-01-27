@@ -3,6 +3,8 @@
  */
 'use strict'
 import {routerRedux} from 'dva/router'
+import urlUtil from 'url'
+import querystring from 'querystring'
 
 // ----------------------------------------------------
 let _dvaApp = null;
@@ -122,6 +124,17 @@ function createModelActionMethods(namespace) {
 //       yield call($$.delay, 5000); //延迟5秒
 const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
+function addUrlQuery(url, query) {
+  const urlObject = urlUtil.parse(url, true);
+  if (typeof query === 'string') {
+    if (query.indexOf('?') === 0) {
+      query = query.slice(1);
+    }
+    query = querystring.parse(query);
+  }
+  urlObject.query = {...urlObject.query, ...query};
+  return urlUtil.format(urlObject);
+}
 
 export default {
   registerModel,
@@ -130,5 +143,5 @@ export default {
   getHistory, dispatch,
   pushToUrl, replaceToUrl,
   createActionTypes, createAction, createActionWithNamespace, createModelActionMethods,
-  delay
+  delay,addUrlQuery,
 }
