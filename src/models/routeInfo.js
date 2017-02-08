@@ -47,13 +47,11 @@ export default {
 
             // 调用初始数据加载函数onInitialLoad
             // 为什么不用onEnter，因为onEnter无法再同一个组件内部切换时触发，例如?page=xxx翻页的情况
-            setTimeout(()=>{
-              state.routes.forEach(r=> {
-                if (r.onInitialLoad) {
-                  r.onInitialLoad.call(r, location, params);
-                }
-              });
-            },0);
+            state.routes.forEach(r=> {
+              if (r.onInitialLoad) {
+                r.onInitialLoad.call(r, location, params);
+              }
+            });
 
           }
         })

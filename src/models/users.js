@@ -20,7 +20,7 @@ export default {
   // methods triggered by action
   effects: {
     *[usersMeta.ACTION_TYPES.fetch]({payload: {page = 1, test}}, {call, put}) {
-      yield call($$.delay, 100);
+      yield call($$.delay, 2000);
       const {data, headers} = yield call(usersService.fetch, {page, test});
 
       const r1 = yield usersMeta.putAction(put, usersMeta.ACTION_TYPES.save, {
