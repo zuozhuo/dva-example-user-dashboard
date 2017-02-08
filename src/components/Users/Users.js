@@ -18,7 +18,6 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   function pageChangeHandler(page) {
-    usersMeta.dispatchAction(usersMeta.ACTION_TYPES.fetch, {page});
     $$.pushToUrl(allUrls.urlPageUsers.formatUrl($$.getRouteParams(), {page}));
 
     // dispatch(routerRedux.push({

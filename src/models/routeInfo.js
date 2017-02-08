@@ -1,3 +1,5 @@
+"use strict";
+
 import matchRoutes from 'react-router/lib/matchRoutes'
 
 const NAMESPACE = 'routeInfo';
@@ -32,13 +34,27 @@ export default {
 
         matchRoutes(routes, location, (error, state) => {
           if (!error) {
+            const params = state ? state.params : {};
+
+            // 分发location和params信息到全局state上
             dispatch({
               type: ACTION_TYPES.setRouteInfo,
               payload: {
                 location: location,
-                params: state ? state.params : {}
+                params: params
               }
-            })
+            });
+
+            // 调用初始数据加载函数onInitialLoad
+            // 为什么不用onEnter，因为onEnter无法再同一个组件内部切换时触发，例如?page=xxx翻页的情况
+            setTimeout(()=>{
+              state.routes.forEach(r=> {
+                if (r.onInitialLoad) {
+                  r.onInitialLoad.call(r, location, params);
+                }
+              });
+            },0);
+
           }
         })
       });

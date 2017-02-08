@@ -33,6 +33,7 @@ class XRouteUrl {
   constructor(pathPattern) {
     this.pathPattern = pathPattern;
   }
+
   // 通过bottle来获取依赖的appHelper
   appHelper = bottle.container.appHelper;
 
@@ -77,6 +78,14 @@ class XRouteUrl {
     // 必须以纯JSON返回
     this.route = routeProps;
     return this.route;
+  }
+
+  setInitialLoad(func) {
+    const _route = this.getRoute();
+    if (!_route) {
+      throw new Error(`setInitialLoad之前，请先对该url进行setRoute`);
+    }
+    _route.onInitialLoad = func;
   }
 
   // 用于将路由pattern转成原始string

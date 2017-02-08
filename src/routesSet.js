@@ -13,17 +13,15 @@ allUrls.urlPageIndex.setRoute(null, (nextState, cb)=>{
     // 按需加载page
     cb(null, require('./routes/PageIndex/PageIndex'));
   });
-});
+},{onEnter:()=>console.log('******** onEnter urlPageIndex *******')});
 // allUrls.urlPageIndex.setRoute(require('./routes/PageIndex/PageIndex'));
 
 allUrls.urlPageUsers.setRoute(null, (nextState, cb)=> {
   require.ensure([], (require) => {
-    // 按需加载page所需的model
-    $$.registerModel(require('./models/users'));
     // 按需加载page
     cb(null, require('./routes/PageUsers/PageUsers'));
   });
-});
+},{onEnter:()=>console.log('******** onEnter urlPageUsers *******')});
 
 // TODO onEnter貌似无法在首次刷新后触发，所以，还是在Page组件的ComponentDidMount里做吧
 
